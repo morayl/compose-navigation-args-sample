@@ -34,7 +34,7 @@ fun Project.setupAndroid() {
         compileSdkVersion(34)
 
         defaultConfig {
-            minSdk = 23
+            minSdk = 26
             targetSdk = 33
         }
 
