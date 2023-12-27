@@ -18,11 +18,13 @@ import com.morayl.composenavigationargs.core.model.SearchParameter
 import com.morayl.composenavigationargs.core.ui.constant.ScreenResultKey
 import com.morayl.composenavigationargs.core.ui.ext.consumeScreenResult
 import com.morayl.composenavigationargs.core.ui.ext.consumeUnitScreenResult
+import com.morayl.composenavigationargs.core.ui.navigation.args.SearchResultArgs
 
 @Composable
 fun SearchTopScreen(
     backStackEntry: NavBackStackEntry,
     onClickSelectParameter: () -> Unit,
+    onClickToResult: (SearchResultArgs) -> Unit,
     viewModel: SearchTopViewModel = hiltViewModel(),
 ) {
     val parameterStr by viewModel.parameterFlow.collectAsStateWithLifecycle()
@@ -42,6 +44,10 @@ fun SearchTopScreen(
         Text(text = floatStr, color = Color.Red)
         Button(onClick = onClickSelectParameter) {
             Text(text = "Go to select parameter page")
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = { onClickToResult(viewModel.createArgs()) }) {
+            Text(text = "Go to result")
         }
     }
 }
