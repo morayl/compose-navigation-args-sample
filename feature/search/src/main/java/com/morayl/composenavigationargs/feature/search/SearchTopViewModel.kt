@@ -14,7 +14,15 @@ class SearchTopViewModel @Inject constructor() : ViewModel() {
     private val _parameterFlow: MutableStateFlow<String> = MutableStateFlow("no parameter")
     val parameterFlow: StateFlow<String> = _parameterFlow.asStateFlow()
 
+    private val _floatValueFlow: MutableStateFlow<String> = MutableStateFlow("no float")
+    val floatValueFlow: StateFlow<String> = _floatValueFlow.asStateFlow()
+
     fun updateParameter(parameter: SearchParameter) {
         _parameterFlow.update { parameter.toString() }
     }
+
+    fun updateFloat(value: Float) {
+        _floatValueFlow.update { value.toString() }
+    }
+
 }
