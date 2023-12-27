@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.morayl.composenavigationargs.core.ui.constant.ScreenResultKey
 import com.morayl.composenavigationargs.core.ui.ext.setScreenResult
+import com.morayl.composenavigationargs.core.ui.ext.setUnitScreenResult
 import com.morayl.composenavigationargs.feature.search.SearchParameterScreen
 
 private const val SEARCH_PARAMETER = "search_parameter"
@@ -24,6 +25,10 @@ fun NavGraphBuilder.searchParameterScreen(
             },
             onClickDecideFloat = {
                 navController.previousBackStackEntry?.setScreenResult(ScreenResultKey.SEARCH_FLOAT, it)
+                navController.popBackStack()
+            },
+            onClickClearParameter = {
+                navController.previousBackStackEntry?.setUnitScreenResult(ScreenResultKey.SEARCH_FLOAT)
                 navController.popBackStack()
             },
         )

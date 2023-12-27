@@ -17,6 +17,7 @@ import androidx.navigation.NavBackStackEntry
 import com.morayl.composenavigationargs.core.model.SearchParameter
 import com.morayl.composenavigationargs.core.ui.constant.ScreenResultKey
 import com.morayl.composenavigationargs.core.ui.ext.consumeScreenResult
+import com.morayl.composenavigationargs.core.ui.ext.consumeUnitScreenResult
 
 @Composable
 fun SearchTopScreen(
@@ -31,6 +32,9 @@ fun SearchTopScreen(
     }
     backStackEntry.consumeScreenResult<Float>(ScreenResultKey.SEARCH_FLOAT) {
         viewModel.updateFloat(it)
+    }
+    backStackEntry.consumeUnitScreenResult(ScreenResultKey.SEARCH_CLEAR) {
+        viewModel.clearResults()
     }
     Column(verticalArrangement = Arrangement.Center) {
         Text(text = parameterStr, color = Color.Red)

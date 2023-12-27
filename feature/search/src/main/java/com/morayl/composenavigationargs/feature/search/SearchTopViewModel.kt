@@ -25,4 +25,9 @@ class SearchTopViewModel @Inject constructor() : ViewModel() {
         _floatValueFlow.update { value.toString() }
     }
 
+    fun clearResults() {
+        _parameterFlow.update { "no parameter" }
+        _floatValueFlow.update { "no float" }
+    }
+
 }
