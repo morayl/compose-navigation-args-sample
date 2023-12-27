@@ -13,7 +13,6 @@ class AndroidFeaturePlugin : Plugin<Project> {
                 apply("composenavigationargs.primitive.android.kotlin")
                 apply("composenavigationargs.primitive.android.compose")
                 apply("composenavigationargs.primitive.android.hilt")
-                apply("composenavigationargs.primitive.detekt")
             }
 
             tasks.withType<KotlinCompile>().configureEach {
