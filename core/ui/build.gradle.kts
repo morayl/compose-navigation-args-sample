@@ -9,4 +9,5 @@ android.namespace = "com.morayl.composenavigationargs.core.ui"
 
 dependencies {
     implementation(libs.composeNavigation)
+    implementation(libs.kotlinSerializationJson)
 }
