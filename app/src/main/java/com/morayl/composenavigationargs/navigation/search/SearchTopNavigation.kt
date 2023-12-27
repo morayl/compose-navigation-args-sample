@@ -20,6 +20,7 @@ fun NavGraphBuilder.searchGraph(
     navigation(graph = NavigationGraph.SEARCH, startDestination = SEARCH_TOP) {
         composable(route = SEARCH_TOP) {
             SearchTopScreen(
+                it,
                 onClickSelectParameter = { navController.toSearchParameter() }
             )
         }

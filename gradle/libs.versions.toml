@@ -43,7 +43,7 @@ kover = "0.7.3"
 androidxLifecycleProcess = "2.6.2"
 
 [libraries]
-javapoet="com.squareup:javapoet:1.13.0"
+javapoet = "com.squareup:javapoet:1.13.0"
 androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlinGradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 composeJbGradlePlugin = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "composeJb" }
@@ -97,6 +97,7 @@ composeLintCheck = { module = "com.slack.lint.compose:compose-lint-checks", vers
 composeCoil = { module = "io.coil-kt:coil-compose", version = "2.4.0" }
 composeImageLoader = { module = "io.github.qdsfdhvh:image-loader", version = "1.6.7" }
 composeShimmer = { module = "com.valentinilk.shimmer:compose-shimmer", version = "1.0.5" }
+composeLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version = "2.6.2" }
 lottieCompose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
 animation-graphics-android = { group = "androidx.compose.animation", name = "animation-graphics-android", version = "1.5.1" }
 
