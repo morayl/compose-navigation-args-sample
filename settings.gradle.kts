@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "ComposeNavigationArgs"
 include(":app")
 include(":feature:search")
+include(":core:model")
