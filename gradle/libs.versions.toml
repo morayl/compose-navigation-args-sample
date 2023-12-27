@@ -68,9 +68,6 @@ daggerHiltAndroidTesting = { module = "com.google.dagger:hilt-android-testing", 
 daggerHiltAndroidCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "dagger" }
 androidxLifecycleProcess = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "androidxLifecycleProcess" }
 
-# for iOS
-koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-
 kotlinxCoroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
