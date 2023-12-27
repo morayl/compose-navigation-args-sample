@@ -1,4 +1,4 @@
-package com.morayl.composenavigationargs.primitive
+package com.morayl.composenavigationargs.convention
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
