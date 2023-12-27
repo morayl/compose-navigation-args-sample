@@ -4,18 +4,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.morayl.composenavigationargs.core.model.SearchParameter
 
 @Composable
-fun SearchTopScreen(
-    onClickSelectParameter: () -> Unit,
-    viewModel: SearchTopViewModel = hiltViewModel(),
+fun SearchParameterScreen(
+    onClickDecideParameter: (SearchParameter) -> Unit,
+    viewModel: SearchParameterViewModel = hiltViewModel(),
 ) {
     Column {
-        Text(text = viewModel.message, color = Color.Red)
-        Button(onClick = onClickSelectParameter) {
-            Text(text = "Go to select parameter page")
+        Button(onClick = { onClickDecideParameter(viewModel.parameter) }) {
+            Text(text = "decide parameter")
         }
     }
 }

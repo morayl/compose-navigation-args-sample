@@ -14,11 +14,14 @@ fun NavController.toSearchTop() {
 }
 
 fun NavGraphBuilder.searchGraph(
+    navController: NavController,
     nestedGraph: NavGraphBuilder.() -> Unit,
 ) {
     navigation(graph = NavigationGraph.SEARCH, startDestination = SEARCH_TOP) {
         composable(route = SEARCH_TOP) {
-            SearchTopScreen()
+            SearchTopScreen(
+                onClickSelectParameter = { navController.toSearchParameter() }
+            )
         }
     }
     nestedGraph()
