@@ -12,6 +12,7 @@ import java.time.LocalTime
 fun SearchParameterScreen(
     onClickDecideParameter: (SearchParameter) -> Unit,
     onClickDecideFloat: (Float) -> Unit,
+    onClickClearParameter: () -> Unit,
     viewModel: SearchParameterViewModel = hiltViewModel(),
 ) {
     Column {
@@ -20,6 +21,9 @@ fun SearchParameterScreen(
         }
         Button(onClick = { onClickDecideFloat(LocalTime.now().second.toFloat()) }) {
             Text(text = "decide float")
+        }
+        Button(onClick = { onClickClearParameter() }) {
+            Text(text = "clear parameter")
         }
     }
 }
