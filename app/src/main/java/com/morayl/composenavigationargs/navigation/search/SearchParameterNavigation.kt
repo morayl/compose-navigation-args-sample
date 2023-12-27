@@ -3,6 +3,8 @@ package com.morayl.composenavigationargs.navigation.search
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.morayl.composenavigationargs.core.ui.constant.ScreenResultKey
+import com.morayl.composenavigationargs.core.ui.ext.setScreenResult
 import com.morayl.composenavigationargs.feature.search.SearchParameterScreen
 
 private const val SEARCH_PARAMETER = "search_parameter"
@@ -16,7 +18,10 @@ fun NavGraphBuilder.searchParameterScreen(
 ) {
     composable(route = SEARCH_PARAMETER) {
         SearchParameterScreen(
-            onClickDecideParameter = { navController.popBackStack() }
+            onClickDecideParameter = {
+                navController.previousBackStackEntry?.setScreenResult(ScreenResultKey.SEARCH_PARAMETER, it)
+                navController.popBackStack()
+            }
         )
     }
 }
