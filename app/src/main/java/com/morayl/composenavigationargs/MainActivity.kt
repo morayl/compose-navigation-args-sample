@@ -14,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.morayl.composenavigationargs.navigation.graph.NavigationGraph
 import com.morayl.composenavigationargs.navigation.search.searchGraph
+import com.morayl.composenavigationargs.navigation.search.searchParameterScreen
 import com.morayl.composenavigationargs.ui.theme.ComposeNavigationArgsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +28,9 @@ class MainActivity : ComponentActivity() {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = NavigationGraph.SEARCH.value) {
-                        searchGraph { }
+                        searchGraph(navController) {
+                            searchParameterScreen(navController)
+                        }
                     }
                 }
             }
