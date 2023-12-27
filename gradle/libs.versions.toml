@@ -86,7 +86,6 @@ composeUiTooling = { module = "androidx.compose.ui:ui-tooling" }
 composeUiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
 composeAnimation = { module = "androidx.compose.animation:animation" }
 composeAnimationGraphics = { module = "androidx.compose.animation:animation-graphics" }
-composeMaterial = { module = "androidx.compose.material:material" }
 composeMaterial3 = { module = "androidx.compose.material3:material3", version.ref = "composeMaterial3" }
 composeMaterialWindowSize = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "composeMaterial3" }
 composeMaterialIcon = { module = "androidx.compose.material:material-icons-extended" }
