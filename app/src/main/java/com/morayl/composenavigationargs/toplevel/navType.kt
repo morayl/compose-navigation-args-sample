@@ -8,8 +8,11 @@ import androidx.navigation.navArgument
 import com.morayl.composenavigationargs.core.ui.navigation.ScreenArgs
 import kotlinx.serialization.json.Json
 
-internal inline fun <reified T : Parcelable> navScreenArgument(isNullableAllowed: Boolean = false): List<NamedNavArgument> {
-    return listOf(navArgument(ScreenArgs.KEY) { type = navType<T>(isNullableAllowed) })
+internal inline fun <reified T : Parcelable> navScreenArgument(defaultValue: T? = null): List<NamedNavArgument> {
+    return listOf(navArgument(ScreenArgs.KEY) {
+        this.type = navType<T>(false)
+        this.defaultValue = defaultValue
+    })
 }
 
 internal inline fun <reified T : Parcelable> navType(isNullableAllowed: Boolean = false): NavType<T> {
