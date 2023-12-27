@@ -3,6 +3,7 @@ package com.morayl.composenavigationargs.feature.search
 import androidx.lifecycle.ViewModel
 import com.morayl.composenavigationargs.core.model.SearchParameter
 import com.morayl.composenavigationargs.core.ui.ext.stateIn
+import com.morayl.composenavigationargs.core.ui.navigation.args.SearchResultArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -31,4 +32,10 @@ class SearchTopViewModel @Inject constructor() : ViewModel() {
         _floatValueFlow.update { null }
     }
 
+    fun createArgs(): SearchResultArgs {
+        return SearchResultArgs(
+            parameter = _parameterFlow.value,
+            float = _floatValueFlow.value ?: 0f,
+        )
+    }
 }

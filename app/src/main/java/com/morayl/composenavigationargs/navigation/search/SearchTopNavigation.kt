@@ -21,7 +21,8 @@ fun NavGraphBuilder.searchGraph(
         composable(route = SEARCH_TOP) {
             SearchTopScreen(
                 it,
-                onClickSelectParameter = { navController.toSearchParameter() }
+                onClickSelectParameter = { navController.toSearchParameter() },
+                onClickToResult = { navController.toSearchResult(it) },
             )
         }
     }
