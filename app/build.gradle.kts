@@ -25,6 +25,7 @@ android {
 dependencies {
     implementation(projects.feature.search)
     implementation(projects.core.model)
+    implementation(projects.core.ui)
     implementation(libs.composeNavigation)
     implementation(libs.composeHiltNavigtation)
     implementation(libs.composeMaterialWindowSize)
