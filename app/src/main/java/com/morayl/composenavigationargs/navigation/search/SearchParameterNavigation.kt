@@ -21,7 +21,11 @@ fun NavGraphBuilder.searchParameterScreen(
             onClickDecideParameter = {
                 navController.previousBackStackEntry?.setScreenResult(ScreenResultKey.SEARCH_PARAMETER, it)
                 navController.popBackStack()
-            }
+            },
+            onClickDecideFloat = {
+                navController.previousBackStackEntry?.setScreenResult(ScreenResultKey.SEARCH_FLOAT, it)
+                navController.popBackStack()
+            },
         )
     }
 }
