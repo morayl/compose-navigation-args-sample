@@ -1,0 +1,25 @@
+package com.morayl.composenavigationargs.navigation.search
+
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
+import com.morayl.composenavigationargs.ext.navigation
+import com.morayl.composenavigationargs.feature.search.SearchTopScreen
+import com.morayl.composenavigationargs.navigation.graph.NavigationGraph
+
+private const val SEARCH_TOP = "search_top"
+
+fun NavController.toSearchTop() {
+    navigate(route = SEARCH_TOP)
+}
+
+fun NavGraphBuilder.searchGraph(
+    nestedGraph: NavGraphBuilder.() -> Unit,
+) {
+    navigation(graph = NavigationGraph.SEARCH, startDestination = SEARCH_TOP) {
+        composable(route = SEARCH_TOP) {
+            SearchTopScreen()
+        }
+    }
+    nestedGraph()
+}

@@ -23,7 +23,7 @@ android {
 }
 
 dependencies {
-
+    implementation(projects.feature.search)
     implementation(libs.composeNavigation)
     implementation(libs.composeHiltNavigtation)
     implementation(libs.composeMaterialWindowSize)
