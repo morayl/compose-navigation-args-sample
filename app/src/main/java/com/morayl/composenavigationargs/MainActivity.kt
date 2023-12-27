@@ -15,7 +15,9 @@ import androidx.navigation.compose.rememberNavController
 import com.morayl.composenavigationargs.navigation.graph.NavigationGraph
 import com.morayl.composenavigationargs.navigation.search.searchGraph
 import com.morayl.composenavigationargs.ui.theme.ComposeNavigationArgsTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

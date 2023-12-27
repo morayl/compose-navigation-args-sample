@@ -2,14 +2,16 @@ package com.morayl.composenavigationargs.primitive
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 
 @Suppress("unused")
 class AndroidHiltPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply("com.google.devtools.ksp")
+                apply("kotlin-kapt")
                 apply("dagger.hilt.android.plugin")
             }
 
@@ -24,9 +26,10 @@ class AndroidHiltPlugin : Plugin<Project> {
                 implementation(libs.library("daggerHiltAndroid"))
                 // https://issuetracker.google.com/issues/237567009
                 implementation(libs.library("androidxFragment"))
-                ksp(libs.library("daggerHiltAndroidCompiler"))
-                testImplementation(libs.library("daggerHiltAndroidTesting"))
-                kspTest(libs.library("daggerHiltAndroidTesting"))
+                kapt(libs.library("daggerHiltAndroidCompiler"))
+            }
+            extensions.configure<KaptExtension> {
+                correctErrorTypes = true
             }
         }
     }
