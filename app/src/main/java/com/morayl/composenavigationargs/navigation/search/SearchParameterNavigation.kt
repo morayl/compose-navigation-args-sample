@@ -28,7 +28,7 @@ fun NavGraphBuilder.searchParameterScreen(
                 navController.popBackStack()
             },
             onClickClearParameter = {
-                navController.previousBackStackEntry?.setUnitScreenResult(ScreenResultKey.SEARCH_FLOAT)
+                navController.previousBackStackEntry?.setUnitScreenResult(ScreenResultKey.SEARCH_CLEAR)
                 navController.popBackStack()
             },
         )
