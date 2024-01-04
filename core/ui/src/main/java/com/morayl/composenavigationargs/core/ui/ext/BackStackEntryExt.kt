@@ -20,25 +20,30 @@ fun <T> NavBackStackEntry.consumeScreenResult(key: ScreenResultKey, action: (T) 
     }
 }
 
-fun <T : Parcelable> NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: T) {
-    setScreenResultAndPopBackInternal(key, value)
+fun <T : Parcelable> NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: T, route: String? = null) {
+    setScreenResultAndPopBackInternal(key, value, route)
 }
 
-fun <T : Number> NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: T) {
-    setScreenResultAndPopBackInternal(key, value)
+fun <T : Number> NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: T, route: String? = null) {
+    setScreenResultAndPopBackInternal(key, value, route)
 }
 
-fun NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: Boolean) {
-    setScreenResultAndPopBackInternal(key, value)
+fun NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: Boolean, route: String? = null) {
+    setScreenResultAndPopBackInternal(key, value, route)
 }
 
-fun NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: String) {
-    setScreenResultAndPopBackInternal(key, value)
+fun NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: String, route: String? = null) {
+    setScreenResultAndPopBackInternal(key, value, route)
 }
 
-private fun <T> NavController.setScreenResultAndPopBackInternal(key: ScreenResultKey, value: T): Boolean {
-    previousBackStackEntry?.setScreenResultInternal(key, value)
-    return popBackStack()
+private fun <T> NavController.setScreenResultAndPopBackInternal(key: ScreenResultKey, value: T, route: String? = null): Boolean {
+    return if (route != null) {
+        getBackStackEntry(route).setScreenResultInternal(key, value)
+        popBackStack(route, false)
+    } else {
+        previousBackStackEntry?.setScreenResultInternal(key, value)
+        popBackStack()
+    }
 }
 
 private fun <T> NavBackStackEntry.setScreenResultInternal(key: ScreenResultKey, value: T) {

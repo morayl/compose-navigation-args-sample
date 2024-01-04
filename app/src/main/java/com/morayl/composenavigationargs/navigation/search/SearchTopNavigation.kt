@@ -7,7 +7,7 @@ import com.morayl.composenavigationargs.ext.navigation
 import com.morayl.composenavigationargs.feature.search.SearchTopScreen
 import com.morayl.composenavigationargs.navigation.graph.NavigationGraph
 
-private const val SEARCH_TOP = "search_top"
+const val SEARCH_TOP = "search_top"
 
 fun NavController.toSearchTop() {
     navigate(route = SEARCH_TOP)
