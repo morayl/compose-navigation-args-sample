@@ -5,6 +5,7 @@ import android.os.Parcelable
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import com.morayl.composenavigationargs.core.ui.constant.ScreenResultKey
 import kotlinx.parcelize.Parcelize
 
@@ -19,20 +20,25 @@ fun <T> NavBackStackEntry.consumeScreenResult(key: ScreenResultKey, action: (T) 
     }
 }
 
-fun <T : Parcelable> NavBackStackEntry.setScreenResult(key: ScreenResultKey, value: T) {
-    setScreenResultInternal(key, value)
+fun <T : Parcelable> NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: T) {
+    setScreenResultAndPopBackInternal(key, value)
 }
 
-fun <T : Number> NavBackStackEntry.setScreenResult(key: ScreenResultKey, value: T) {
-    setScreenResultInternal(key, value)
+fun <T : Number> NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: T) {
+    setScreenResultAndPopBackInternal(key, value)
 }
 
-fun NavBackStackEntry.setScreenResult(key: ScreenResultKey, value: Boolean) {
-    setScreenResultInternal(key, value)
+fun NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: Boolean) {
+    setScreenResultAndPopBackInternal(key, value)
 }
 
-fun NavBackStackEntry.setScreenResult(key: ScreenResultKey, value: String) {
-    setScreenResultInternal(key, value)
+fun NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: String) {
+    setScreenResultAndPopBackInternal(key, value)
+}
+
+private fun <T> NavController.setScreenResultAndPopBackInternal(key: ScreenResultKey, value: T): Boolean {
+    previousBackStackEntry?.setScreenResultInternal(key, value)
+    return popBackStack()
 }
 
 private fun <T> NavBackStackEntry.setScreenResultInternal(key: ScreenResultKey, value: T) {
@@ -47,8 +53,8 @@ fun NavBackStackEntry.consumeUnitScreenResult(key: ScreenResultKey, action: () -
     }
 }
 
-fun NavBackStackEntry.setUnitScreenResult(key: ScreenResultKey) {
-    setScreenResult(key, ParcelableUnit)
+fun NavController.setUnitScreenResultAndPopBack(key: ScreenResultKey) {
+    setScreenResultAndPopBack(key, ParcelableUnit)
 }
 
 @Parcelize

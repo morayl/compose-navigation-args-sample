@@ -4,8 +4,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.morayl.composenavigationargs.core.ui.constant.ScreenResultKey
-import com.morayl.composenavigationargs.core.ui.ext.setScreenResult
-import com.morayl.composenavigationargs.core.ui.ext.setUnitScreenResult
+import com.morayl.composenavigationargs.core.ui.ext.setScreenResultAndPopBack
+import com.morayl.composenavigationargs.core.ui.ext.setUnitScreenResultAndPopBack
 import com.morayl.composenavigationargs.feature.search.SearchParameterScreen
 
 private const val SEARCH_PARAMETER = "search_parameter"
@@ -20,16 +20,13 @@ fun NavGraphBuilder.searchParameterScreen(
     composable(route = SEARCH_PARAMETER) {
         SearchParameterScreen(
             onClickDecideParameter = {
-                navController.previousBackStackEntry?.setScreenResult(ScreenResultKey.SEARCH_PARAMETER, it)
-                navController.popBackStack()
+                navController.setScreenResultAndPopBack(ScreenResultKey.SEARCH_PARAMETER, it)
             },
             onClickDecideFloat = {
-                navController.previousBackStackEntry?.setScreenResult(ScreenResultKey.SEARCH_FLOAT, it)
-                navController.popBackStack()
+                navController.setScreenResultAndPopBack(ScreenResultKey.SEARCH_FLOAT, it)
             },
             onClickClearParameter = {
-                navController.previousBackStackEntry?.setUnitScreenResult(ScreenResultKey.SEARCH_CLEAR)
-                navController.popBackStack()
+                navController.setUnitScreenResultAndPopBack(ScreenResultKey.SEARCH_CLEAR)
             },
         )
     }
