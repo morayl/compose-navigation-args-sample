@@ -15,9 +15,7 @@ fun NavController.toSearchResult(args: SearchResultArgs) {
     navigate(route = "$SEARCH_RESULT/${args.toNavigationUri()}")
 }
 
-fun NavGraphBuilder.searchResultScreen(
-    navController: NavController,
-) {
+fun NavGraphBuilder.searchResultScreen() {
     composable(
         route = "$SEARCH_RESULT/{${ScreenArgs.KEY}}",
         arguments = navScreenArgument<SearchResultArgs>(),
