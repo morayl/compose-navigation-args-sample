@@ -8,7 +8,7 @@ import com.morayl.composenavigationargs.core.ui.navigation.ScreenArgs
 import kotlinx.serialization.json.Json
 
 internal inline fun <reified T : ScreenArgs> navScreenArgument(): List<NamedNavArgument> {
-    return listOf(navArgument(ScreenArgs.KEY) { type = navType<T>(false) })
+    return listOf(navArgument(ScreenArgs.KEY) { type = navType<T>(isNullableAllowed = false) })
 }
 
 private inline fun <reified T : ScreenArgs> navType(isNullableAllowed: Boolean = false): NavType<T> {
