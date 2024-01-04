@@ -14,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.morayl.composenavigationargs.navigation.graph.NavigationGraph
 import com.morayl.composenavigationargs.navigation.search.searchGraph
+import com.morayl.composenavigationargs.navigation.search.searchParameterBookmarkScreen
 import com.morayl.composenavigationargs.navigation.search.searchParameterScreen
 import com.morayl.composenavigationargs.navigation.search.searchResultScreen
 import com.morayl.composenavigationargs.ui.theme.ComposeNavigationArgsTheme
@@ -31,6 +32,7 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = NavigationGraph.SEARCH.value) {
                         searchGraph(navController) {
                             searchParameterScreen(navController)
+                            searchParameterBookmarkScreen(navController)
                             searchResultScreen()
                         }
                     }

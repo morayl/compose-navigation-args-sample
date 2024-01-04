@@ -13,6 +13,7 @@ fun SearchParameterScreen(
     onClickDecideParameter: (SearchParameter) -> Unit,
     onClickDecideFloat: (Float) -> Unit,
     onClickClearParameter: () -> Unit,
+    onClickToBookmark: () -> Unit,
     viewModel: SearchParameterViewModel = hiltViewModel(),
 ) {
     Column {
@@ -24,6 +25,9 @@ fun SearchParameterScreen(
         }
         Button(onClick = { onClickClearParameter() }) {
             Text(text = "clear parameter")
+        }
+        Button(onClick = { onClickToBookmark() }) {
+            Text(text = "to bookmark")
         }
     }
 }

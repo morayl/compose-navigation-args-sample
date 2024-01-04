@@ -28,6 +28,9 @@ fun NavGraphBuilder.searchParameterScreen(
             onClickClearParameter = {
                 navController.setUnitScreenResultAndPopBack(ScreenResultKey.SEARCH_CLEAR)
             },
+            onClickToBookmark = {
+                navController.toSearchParameterBookmark()
+            },
         )
     }
 }
