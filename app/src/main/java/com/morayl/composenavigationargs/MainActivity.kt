@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = NavigationGraph.SEARCH.value) {
                         searchGraph(navController) {
                             searchParameterScreen(navController)
-                            searchResultScreen(navController)
+                            searchResultScreen()
                         }
                     }
                 }
