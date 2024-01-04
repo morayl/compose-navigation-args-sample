@@ -9,13 +9,13 @@ import kotlinx.serialization.json.Json
 
 internal inline fun <reified T : ScreenArgs> navScreenArgument(): List<NamedNavArgument> {
     return listOf(navArgument(ScreenArgs.KEY) {
-        this.type = navType<T>(false)
+        this.type = navType<T>(isNullableAllowed = false)
     })
 }
 
 internal inline fun <reified T : ScreenArgs> navScreenArgument(defaultValue: T): List<NamedNavArgument> {
     return listOf(navArgument(ScreenArgs.KEY) {
-        this.type = navType<T>(false)
+        this.type = navType<T>(isNullableAllowed = false)
         this.defaultValue = defaultValue
     })
 }
