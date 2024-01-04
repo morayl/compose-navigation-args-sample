@@ -7,7 +7,13 @@ import androidx.navigation.navArgument
 import com.morayl.composenavigationargs.core.ui.navigation.ScreenArgs
 import kotlinx.serialization.json.Json
 
-internal inline fun <reified T : ScreenArgs> navScreenArgument(defaultValue: T? = null): List<NamedNavArgument> {
+internal inline fun <reified T : ScreenArgs> navScreenArgument(): List<NamedNavArgument> {
+    return listOf(navArgument(ScreenArgs.KEY) {
+        this.type = navType<T>(false)
+    })
+}
+
+internal inline fun <reified T : ScreenArgs> navScreenArgument(defaultValue: T): List<NamedNavArgument> {
     return listOf(navArgument(ScreenArgs.KEY) {
         this.type = navType<T>(false)
         this.defaultValue = defaultValue
