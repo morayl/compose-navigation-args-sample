@@ -20,6 +20,22 @@ fun <T> NavBackStackEntry.consumeScreenResult(key: ScreenResultKey, action: (T) 
     }
 }
 
+fun <T : Parcelable> NavController.setScreenResult(key: ScreenResultKey, value: T, route: String? = null) {
+    setScreenResultInternal(key, value, route)
+}
+
+fun <T : Number> NavController.setScreenResult(key: ScreenResultKey, value: T, route: String? = null) {
+    setScreenResultInternal(key, value, route)
+}
+
+fun NavController.setScreenResult(key: ScreenResultKey, value: Boolean, route: String? = null) {
+    setScreenResultInternal(key, value, route)
+}
+
+fun NavController.setScreenResult(key: ScreenResultKey, value: String, route: String? = null) {
+    setScreenResultInternal(key, value, route)
+}
+
 fun <T : Parcelable> NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: T, route: String? = null) {
     setScreenResultAndPopBackInternal(key, value, route)
 }
@@ -37,12 +53,19 @@ fun NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: String,
 }
 
 private fun <T> NavController.setScreenResultAndPopBackInternal(key: ScreenResultKey, value: T, route: String? = null): Boolean {
+    setScreenResultInternal(key, value, route)
     return if (route != null) {
-        getBackStackEntry(route).setScreenResultInternal(key, value)
         popBackStack(route, false)
     } else {
-        previousBackStackEntry?.setScreenResultInternal(key, value)
         popBackStack()
+    }
+}
+
+private fun <T> NavController.setScreenResultInternal(key: ScreenResultKey, value: T, route: String? = null) {
+    if (route != null) {
+        getBackStackEntry(route).setScreenResultInternal(key, value)
+    } else {
+        previousBackStackEntry?.setScreenResultInternal(key, value)
     }
 }
 
@@ -56,6 +79,10 @@ fun NavBackStackEntry.consumeUnitScreenResult(key: ScreenResultKey, action: () -
     consumeScreenResult<ParcelableUnit>(key) {
         action()
     }
+}
+
+fun NavController.setUnitScreenResult(key: ScreenResultKey, route: String? = null) {
+    setScreenResultInternal(key, ParcelableUnit, route)
 }
 
 fun NavController.setUnitScreenResultAndPopBack(key: ScreenResultKey, route: String? = null) {
