@@ -58,8 +58,8 @@ fun NavBackStackEntry.consumeUnitScreenResult(key: ScreenResultKey, action: () -
     }
 }
 
-fun NavController.setUnitScreenResultAndPopBack(key: ScreenResultKey) {
-    setScreenResultAndPopBack(key, ParcelableUnit)
+fun NavController.setUnitScreenResultAndPopBack(key: ScreenResultKey, route: String? = null) {
+    setScreenResultAndPopBack(key, ParcelableUnit, route)
 }
 
 @Parcelize
