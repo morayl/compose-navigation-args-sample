@@ -5,7 +5,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.morayl.composenavigationargs.core.ui.constant.ScreenResultKey
 import com.morayl.composenavigationargs.core.ui.ext.setScreenResultAndPopBack
-import com.morayl.composenavigationargs.core.ui.ext.setUnitScreenResultAndPopBack
 import com.morayl.composenavigationargs.feature.search.SearchParameterScreen
 
 private const val SEARCH_PARAMETER = "search_parameter"
@@ -20,13 +19,13 @@ fun NavGraphBuilder.searchParameterScreen(
     composable(route = SEARCH_PARAMETER) {
         SearchParameterScreen(
             onClickDecideParameter = {
-                navController.setScreenResultAndPopBack(ScreenResultKey.SEARCH_PARAMETER, it)
+                navController.setScreenResultAndPopBack(ScreenResultKey.SelectedSearchParameter, it)
             },
             onClickDecideFloat = {
-                navController.setScreenResultAndPopBack(ScreenResultKey.SEARCH_FLOAT, it)
+                navController.setScreenResultAndPopBack(ScreenResultKey.SelectedSearchFloat, it)
             },
             onClickClearParameter = {
-                navController.setUnitScreenResultAndPopBack(ScreenResultKey.SEARCH_CLEAR)
+                navController.setScreenResultAndPopBack(ScreenResultKey.SelectedSearchClear)
             },
             onClickToBookmark = {
                 navController.toSearchParameterBookmark()

@@ -19,7 +19,7 @@ fun NavGraphBuilder.searchParameterBookmarkScreen(
     composable(route = SEARCH_PARAMETER_BOOKMARK) {
         SearchParameterBookmarkScreen(
             onClickDecideParameter = {
-                navController.setScreenResultAndPopBack(ScreenResultKey.SEARCH_PARAMETER, it, SEARCH_TOP)
+                navController.setScreenResultAndPopBack(ScreenResultKey.SelectedSearchParameter, it, SEARCH_TOP)
             },
         )
     }

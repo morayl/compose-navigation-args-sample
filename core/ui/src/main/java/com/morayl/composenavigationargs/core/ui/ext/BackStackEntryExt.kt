@@ -7,11 +7,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import com.morayl.composenavigationargs.core.ui.constant.ScreenResultKey
+import com.morayl.composenavigationargs.core.ui.constant.value
 import kotlinx.parcelize.Parcelize
 
 @SuppressLint("ComposableNaming")
 @Composable
-fun <T> NavBackStackEntry.consumeScreenResult(key: ScreenResultKey, action: (T) -> Unit) {
+fun <T> NavBackStackEntry.consumeScreenResult(key: ScreenResultKey<T>, action: (T) -> Unit) {
     LaunchedEffect(Unit) {
         savedStateHandle.get<T>(key.value)
         val result = savedStateHandle.get<T>(key.value) ?: return@LaunchedEffect
@@ -20,39 +21,43 @@ fun <T> NavBackStackEntry.consumeScreenResult(key: ScreenResultKey, action: (T) 
     }
 }
 
-fun <T : Parcelable> NavController.setScreenResult(key: ScreenResultKey, value: T, route: String? = null) {
+fun <T : Parcelable> NavController.setScreenResult(key: ScreenResultKey<T>, value: T, route: String? = null) {
     setScreenResultInternal(key, value, route)
 }
 
-fun <T : Number> NavController.setScreenResult(key: ScreenResultKey, value: T, route: String? = null) {
+fun <T : Number> NavController.setScreenResult(key: ScreenResultKey<T>, value: T, route: String? = null) {
     setScreenResultInternal(key, value, route)
 }
 
-fun NavController.setScreenResult(key: ScreenResultKey, value: Boolean, route: String? = null) {
+fun NavController.setScreenResult(key: ScreenResultKey<Boolean>, value: Boolean, route: String? = null) {
     setScreenResultInternal(key, value, route)
 }
 
-fun NavController.setScreenResult(key: ScreenResultKey, value: String, route: String? = null) {
+fun NavController.setScreenResult(key: ScreenResultKey<String>, value: String, route: String? = null) {
     setScreenResultInternal(key, value, route)
 }
 
-fun <T : Parcelable> NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: T, route: String? = null) {
+fun <T : Parcelable> NavController.setScreenResultAndPopBack(key: ScreenResultKey<T>, value: T, route: String? = null) {
     setScreenResultAndPopBackInternal(key, value, route)
 }
 
-fun <T : Number> NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: T, route: String? = null) {
+fun <T : Number> NavController.setScreenResultAndPopBack(key: ScreenResultKey<T>, value: T, route: String? = null) {
     setScreenResultAndPopBackInternal(key, value, route)
 }
 
-fun NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: Boolean, route: String? = null) {
+fun NavController.setScreenResultAndPopBack(key: ScreenResultKey<Boolean>, value: Boolean, route: String? = null) {
     setScreenResultAndPopBackInternal(key, value, route)
 }
 
-fun NavController.setScreenResultAndPopBack(key: ScreenResultKey, value: String, route: String? = null) {
+fun NavController.setScreenResultAndPopBack(key: ScreenResultKey<String>, value: String, route: String? = null) {
     setScreenResultAndPopBackInternal(key, value, route)
 }
 
-private fun <T> NavController.setScreenResultAndPopBackInternal(key: ScreenResultKey, value: T, route: String? = null): Boolean {
+fun NavController.setScreenResultAndPopBack(key: ScreenResultKey<ParcelableUnit>, route: String? = null) {
+    setScreenResultAndPopBackInternal(key, ParcelableUnit, route)
+}
+
+private fun <T> NavController.setScreenResultAndPopBackInternal(key: ScreenResultKey<T>, value: T, route: String? = null): Boolean {
     setScreenResultInternal(key, value, route)
     return if (route != null) {
         popBackStack(route, false)
@@ -61,7 +66,7 @@ private fun <T> NavController.setScreenResultAndPopBackInternal(key: ScreenResul
     }
 }
 
-private fun <T> NavController.setScreenResultInternal(key: ScreenResultKey, value: T, route: String? = null) {
+private fun <T> NavController.setScreenResultInternal(key: ScreenResultKey<T>, value: T, route: String? = null) {
     if (route != null) {
         getBackStackEntry(route).setScreenResultInternal(key, value)
     } else {
@@ -69,25 +74,9 @@ private fun <T> NavController.setScreenResultInternal(key: ScreenResultKey, valu
     }
 }
 
-private fun <T> NavBackStackEntry.setScreenResultInternal(key: ScreenResultKey, value: T) {
+private fun <T> NavBackStackEntry.setScreenResultInternal(key: ScreenResultKey<T>, value: T) {
     savedStateHandle[key.value] = value
 }
 
-@SuppressLint("ComposableNaming")
-@Composable
-fun NavBackStackEntry.consumeUnitScreenResult(key: ScreenResultKey, action: () -> Unit) {
-    consumeScreenResult<ParcelableUnit>(key) {
-        action()
-    }
-}
-
-fun NavController.setUnitScreenResult(key: ScreenResultKey, route: String? = null) {
-    setScreenResultInternal(key, ParcelableUnit, route)
-}
-
-fun NavController.setUnitScreenResultAndPopBack(key: ScreenResultKey, route: String? = null) {
-    setScreenResultAndPopBack(key, ParcelableUnit, route)
-}
-
 @Parcelize
-private object ParcelableUnit : Parcelable
+object ParcelableUnit : Parcelable

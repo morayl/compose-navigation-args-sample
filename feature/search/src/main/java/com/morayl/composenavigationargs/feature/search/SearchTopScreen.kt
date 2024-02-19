@@ -14,10 +14,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavBackStackEntry
-import com.morayl.composenavigationargs.core.model.SearchParameter
 import com.morayl.composenavigationargs.core.ui.constant.ScreenResultKey
 import com.morayl.composenavigationargs.core.ui.ext.consumeScreenResult
-import com.morayl.composenavigationargs.core.ui.ext.consumeUnitScreenResult
 import com.morayl.composenavigationargs.core.ui.navigation.args.SearchResultArgs
 
 @Composable
@@ -29,13 +27,13 @@ fun SearchTopScreen(
 ) {
     val parameterStr by viewModel.parameterFlow.collectAsStateWithLifecycle()
     val floatStr by viewModel.floatValueFlow.collectAsStateWithLifecycle()
-    backStackEntry.consumeScreenResult<SearchParameter>(ScreenResultKey.SEARCH_PARAMETER) {
+    backStackEntry.consumeScreenResult(ScreenResultKey.SelectedSearchParameter) {
         viewModel.updateParameter(it)
     }
-    backStackEntry.consumeScreenResult<Float>(ScreenResultKey.SEARCH_FLOAT) {
+    backStackEntry.consumeScreenResult(ScreenResultKey.SelectedSearchFloat) {
         viewModel.updateFloat(it)
     }
-    backStackEntry.consumeUnitScreenResult(ScreenResultKey.SEARCH_CLEAR) {
+    backStackEntry.consumeScreenResult(ScreenResultKey.SelectedSearchClear) {
         viewModel.clearResults()
     }
     Column(verticalArrangement = Arrangement.Center) {
